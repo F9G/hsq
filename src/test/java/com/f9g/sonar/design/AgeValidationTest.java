@@ -1,8 +1,6 @@
 /*
- * @(#)EmployeeTest.java  1.00  23/08/2012
+ * @(#)EmployeeTest.java 
  * 
- * Copyright 2012 OTS SA All rights reserved.
- * OTS SA PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.f9g.sonar.design;
 
