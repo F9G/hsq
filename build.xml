@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<project name="sampleProject" basedir="." default="sonar">
+
+	
+	  <taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+	  	<classpath path="${ant.library.dir}/sonar-ant-task.jar" />
+	  </taskdef>
+	
+
+	
+	<property name="src" value="src"/>
+	<property name="classes" value="build/classes"/>
+
+	<target name="clean">
+		<delete dir="${classes}"/>
+	</target>
+	
+	<target name="build" depends="clean">
+		<mkdir dir="${classes}"/>
+		<javac destdir="${classes}" debug="true">            
+	    	<src path="${src}"/>
+	        <!--classpath refid="java"/-->
+		</javac>
+	</target>
+	
+	  <!-- Add the target -->
+	  <target name="sonar" depends="build">
+	
+	  <!-- EXAMPLE FOR MYSQL -->
+	  <property name="sonar.jdbc.url" 
+	       value="jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8" />
+	  <property name="sonar.jdbc.driverClassName" value="com.mysql.jdbc.Driver" />
+	  <property name="sonar.jdbc.username" value="sonar" />
+	  <property name="sonar.jdbc.password" value="sonar" />	
+	
+	
+	    <!-- list of mandatories Sonar properties -->
+	    <property name="sonar.sources" value="${src}" />
+	 
+	    <!-- list of optional Sonar properties -->
+	    <property name="sonar.projectName" value="tests:test1" />
+	    <property name="sonar.binaries" value="build/classes" />
+	    <!--property name="sonar.libraries" value="list of paths to libraries separated by a comma 
+	    (These libraries are for example used by the Sonar Findbugs plugin)" /-->
+	 
+	    <sonar:sonar key="org.example:example" version="0.1-SNAPSHOT" xmlns:sonar="antlib:org.sonar.ant"/>
+	  </target>
+	
+	
+</project>
